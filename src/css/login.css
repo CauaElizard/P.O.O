@@ -1,0 +1,232 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-wrapper {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #667eea;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input[type="email"]:hover,
+input[type="password"]:hover {
+  border-color: #667eea;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.form-footer {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.forgot-password {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.signup-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.signup-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .form-wrapper {
+    padding: 30px 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .form-footer {
+    margin-top: 20px;
+  }
+
+  .forgot-password,
+  .signup-link {
+    font-size: 13px;
+  }
+}
+
+.form-wrapper {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input:valid {
+  border-color: #28a745;
+}
+
+input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: #dc3545;
+}
+
+input:focus {
+  outline: 2px solid transparent;
+}
+
+.form-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 14px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.container {
+  position: relative;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px #f8f9fa inset !important;
+  -webkit-text-fill-color: #333 !important;
+  border-color: #667eea !important;
+}
+
+input::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+input::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+  color: #999;
+}
+
+input::-ms-input-placeholder {
+  color: #999;
+}

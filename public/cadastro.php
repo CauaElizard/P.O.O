@@ -12,7 +12,7 @@
             <h2>Cadastro</h2>
             <form action="process_cadastro.php" method="post">
                 <div class="input-group">
-                    <label for="nome">Nome:</label>
+                    <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
 

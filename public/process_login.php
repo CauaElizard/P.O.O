@@ -13,7 +13,7 @@ $usuario = $login->autenticar($email, $senha);
 if ($usuario) {
     $_SESSION['usuario_id'] = $usuario['id'];
     $_SESSION['usuario_nome'] = $usuario['nome'];
-    header("Location: ../index.php");
+    header("Location: configuracoes.php");
     exit;
 } else {
     $_SESSION['erro_login'] = "Email ou senha inválidos.";

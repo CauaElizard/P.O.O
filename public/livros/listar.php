@@ -1,4 +1,4 @@
-<?php include 'public/layout.php'; ?>
+<?php include 'public/livros/layout.php'; ?>
 
 <div class="card">
     <h2>📚 Lista de Livros</h2>
@@ -7,7 +7,7 @@
         <div class="empty-state">
             <h3>Nenhum livro cadastrado</h3>
             <p>Comece adicionando seu primeiro livro ao sistema!</p>
-            <a href="livros.php?acao=adicionar" class="btn btn-success">➕ Adicionar Primeiro Livro</a>
+            <a href="../../livros.php?acao=adicionar" class="btn btn-success">➕ Adicionar Primeiro Livro</a>
         </div>
     <?php else: ?>
         <p><strong>Total de livros:</strong> <?= count($livros) ?></p>
@@ -18,7 +18,7 @@
                     <th>ID</th>
                     <th>Título</th>
                     <th>Autor</th>
-                    <th>Ano</th>
+                    <th>Data de Publicação</th>
                     <th>ISBN</th>
                     <th>Ações</th>
                 </tr>
@@ -29,7 +29,14 @@
                         <td><?= $livro->getId() ?></td>
                         <td><?= htmlspecialchars($livro->getTitulo()) ?></td>
                         <td><?= htmlspecialchars($livro->getAutor()) ?></td>
-                        <td><?= $livro->getAno() ?></td>
+                        <td>
+                            <span title="<?= $livro->getDataPublicacaoFormatada('d/m/Y') ?>">
+                                <?= $livro->getDataPublicacaoFormatada('d/m/Y') ?>
+                            </span>
+                            <small style="color: #666; display: block; font-size: 0.8em;">
+                                (<?= $livro->getAnoPublicacao() ?>)
+                            </small>
+                        </td>
                         <td><?= htmlspecialchars($livro->getIsbn()) ?></td>
                         <td>
                             <div class="actions">

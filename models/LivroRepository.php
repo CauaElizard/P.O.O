@@ -5,8 +5,6 @@
  * Responsável por todas as operações de persistência dos livros.
  * Implementa os métodos CRUD (Create, Read, Update, Delete).
  */
-require_once __DIR__ . '/../config/Database.php';
-
 class LivroRepository
 {
     private PDO $conexao;
@@ -30,13 +28,13 @@ class LivroRepository
     public function adicionar(Livro $livro): bool
     {
         try {
-            $sql = "INSERT INTO livros (titulo, autor, ano, isbn) VALUES (:titulo, :autor, :ano, :isbn)";
+            $sql = "INSERT INTO livros (titulo, autor, data_publicacao, isbn) VALUES (:titulo, :autor, :data_publicacao, :isbn)";
             $stmt = $this->conexao->prepare($sql);
             
             return $stmt->execute([
                 ':titulo' => $livro->getTitulo(),
                 ':autor' => $livro->getAutor(),
-                ':ano' => $livro->getAno(),
+                ':data_publicacao' => $livro->getDataPublicacaoBanco(),
                 ':isbn' => $livro->getIsbn()
             ]);
             
@@ -54,7 +52,7 @@ class LivroRepository
     public function listarTodos(): array
     {
         try {
-            $sql = "SELECT * FROM livros ORDER BY titulo ASC";
+            $sql = "SELECT * FROM livros ORDER BY data_publicacao DESC, titulo ASC";
             $stmt = $this->conexao->query($sql);
             $livros = [];
             
@@ -63,7 +61,7 @@ class LivroRepository
                     $row['id'],
                     $row['titulo'],
                     $row['autor'],
-                    $row['ano'],
+                    $row['data_publicacao'],
                     $row['isbn']
                 );
             }
@@ -96,7 +94,7 @@ class LivroRepository
                     $row['id'],
                     $row['titulo'],
                     $row['autor'],
-                    $row['ano'],
+                    $row['data_publicacao'],
                     $row['isbn']
                 );
             }
@@ -118,14 +116,14 @@ class LivroRepository
     public function editar(Livro $livro): bool
     {
         try {
-            $sql = "UPDATE livros SET titulo = :titulo, autor = :autor, ano = :ano, isbn = :isbn WHERE id = :id";
+            $sql = "UPDATE livros SET titulo = :titulo, autor = :autor, data_publicacao = :data_publicacao, isbn = :isbn WHERE id = :id";
             $stmt = $this->conexao->prepare($sql);
             
             return $stmt->execute([
                 ':id' => $livro->getId(),
                 ':titulo' => $livro->getTitulo(),
                 ':autor' => $livro->getAutor(),
-                ':ano' => $livro->getAno(),
+                ':data_publicacao' => $livro->getDataPublicacaoBanco(),
                 ':isbn' => $livro->getIsbn()
             ]);
             
@@ -164,7 +162,7 @@ class LivroRepository
     public function buscarPorTitulo(string $titulo): array
     {
         try {
-            $sql = "SELECT * FROM livros WHERE titulo LIKE :titulo ORDER BY titulo ASC";
+            $sql = "SELECT * FROM livros WHERE titulo LIKE :titulo ORDER BY data_publicacao DESC, titulo ASC";
             $stmt = $this->conexao->prepare($sql);
             $stmt->execute([':titulo' => '%' . $titulo . '%']);
             
@@ -174,7 +172,7 @@ class LivroRepository
                     $row['id'],
                     $row['titulo'],
                     $row['autor'],
-                    $row['ano'],
+                    $row['data_publicacao'],
                     $row['isbn']
                 );
             }
@@ -183,6 +181,42 @@ class LivroRepository
             
         } catch (PDOException $e) {
             error_log("Erro ao buscar livros por título: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Busca livros por período de publicação
+     * 
+     * @param DateTime $dataInicio Data inicial
+     * @param DateTime $dataFim Data final
+     * @return array Array de objetos Livro
+     */
+    public function buscarPorPeriodo(DateTime $dataInicio, DateTime $dataFim): array
+    {
+        try {
+            $sql = "SELECT * FROM livros WHERE data_publicacao BETWEEN :data_inicio AND :data_fim ORDER BY data_publicacao DESC";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute([
+                ':data_inicio' => $dataInicio->format('Y-m-d'),
+                ':data_fim' => $dataFim->format('Y-m-d')
+            ]);
+            
+            $livros = [];
+            while ($row = $stmt->fetch()) {
+                $livros[] = new Livro(
+                    $row['id'],
+                    $row['titulo'],
+                    $row['autor'],
+                    $row['data_publicacao'],
+                    $row['isbn']
+                );
+            }
+            
+            return $livros;
+            
+        } catch (PDOException $e) {
+            error_log("Erro ao buscar livros por período: " . $e->getMessage());
             return [];
         }
     }

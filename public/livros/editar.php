@@ -1,4 +1,4 @@
-<?php include 'views/layout.php'; ?>
+<?php include 'public/livros/layout.php'; ?>
 
 <div class="card">
     <h2>✏️ Editar Livro</h2>
@@ -17,9 +17,13 @@
         </div>
         
         <div class="form-group">
-            <label for="ano">Ano de Publicação:</label>
-            <input type="number" id="ano" name="ano" required min="1000" max="<?= date('Y') + 1 ?>"
-                   value="<?= $livro->getAno() ?>">
+            <label for="data_publicacao">Data de Publicação:</label>
+            <input type="date" id="data_publicacao" name="data_publicacao" required 
+                   min="1000-01-01" max="<?= date('Y-m-d') ?>"
+                   value="<?= $livro->getDataPublicacaoBanco() ?>">
+            <small style="color: #666; font-size: 0.9em;">
+                Data atual: <?= $livro->getDataPublicacaoFormatada('d/m/Y') ?>
+            </small>
         </div>
         
         <div class="form-group">
@@ -29,11 +33,24 @@
         </div>
         
         <div class="form-group">
-            <button type="submit" class="btn btn-success">💾 Atualizar Livro</button>
-            <a href="index.php" class="btn">↩️ Voltar</a>
+            <button type="submit" class="btn btn-success ">💾 Atualizar Livro</button>
+            <a href="livros.php" class="btn">↩️ Voltar</a>
         </div>
     </form>
 </div>
+
+<script>
+// Adicionar validação JavaScript para melhor UX
+document.getElementById('data_publicacao').addEventListener('change', function() {
+    const dataEscolhida = new Date(this.value);
+    const hoje = new Date();
+    
+    if (dataEscolhida > hoje) {
+        alert('A data de publicação não pode ser futura!');
+        this.value = '<?= $livro->getDataPublicacaoBanco() ?>';
+    }
+});
+</script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../src/css/login.css">
+    <link rel="stylesheet" href="../../src/css/login.css">
 </head>
 <body>
     <div class="container">
@@ -26,7 +26,7 @@
                 <div class="form-footer">
                     <a href="#" class="forgot-password">Esqueceu a senha?</a>
                     <p class="signup-link">
-                        Não tem conta? <a href="cadastro.php">Cadastre-se</a>
+                        Não tem conta? <a href="../cadastro/cadastro.php">Cadastre-se</a>
                     </p>
                 </div>
             </form>

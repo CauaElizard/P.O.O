@@ -2,14 +2,14 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login.php');
+    header('Location: ../login/login.php');
     exit;
 }
 
 $user_id = $_SESSION['usuario_id'];
 $user_name = $_SESSION['usuario_nome'] ?? 'Usuário';
 
-require_once '../models/UserSettings.php';
+require_once '../../models/UserSettings.php';
 $userSettings = new UserSettings();
 $currentUser = $userSettings->getUserById($user_id);
 
@@ -23,7 +23,7 @@ unset($_SESSION['erro_configuracao'], $_SESSION['sucesso_configuracao']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações da Conta</title>
-    <link rel="stylesheet" href="../src/css/configuracoes.css">
+    <link rel="stylesheet" href="../../src/css/configuracoes.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
 </head>
 <body>
@@ -32,8 +32,8 @@ unset($_SESSION['erro_configuracao'], $_SESSION['sucesso_configuracao']);
             <h1>Configurações da Conta</h1>
             <p>Olá, <?php echo htmlspecialchars($user_name); ?>! Gerencie suas informações pessoais e configurações de segurança</p>
             <div class="nav-links">
-                <a href="../index.php" class="nav-link">← Voltar ao Início</a>
-                <a href="logout.php" class="nav-link logout-btn">Desconectar    </a>
+                <a href="../../index.php" class="nav-link">← Voltar ao Início</a>
+                <a href="../logout/logout_modal.php" class="nav-link logout-btn">Desconectar</a>
             </div>
         </div>
 
@@ -52,7 +52,7 @@ unset($_SESSION['erro_configuracao'], $_SESSION['sucesso_configuracao']);
         <div class="cards-grid">
             <div class="card">
                 <div class="card-header">
-                    <h2><i data-lucide="mail"></i> Atualizar Email</h2>
+                    <h2><i data-lucide="mail"></i>Atualizar Email</h2>
                     <p>Altere o endereço de email associado à sua conta</p>
                 </div>
                 <div class="card-content">
@@ -114,7 +114,7 @@ unset($_SESSION['erro_configuracao'], $_SESSION['sucesso_configuracao']);
 
         <div class="card danger-zone">
             <div class="card-header">
-                <h2><i data-lucide="shield"></i> Zona de Perigo</h2>
+                <h2><i data-lucide="shield"></i>Zona de Perigo</h2>
                 <p>Ações irreversíveis que afetam permanentemente sua conta</p>
             </div>
             <div class="card-content">
@@ -161,6 +161,6 @@ unset($_SESSION['erro_configuracao'], $_SESSION['sucesso_configuracao']);
     <script>
         window.currentUserId = <?php echo json_encode($user_id); ?>;
     </script>
-    <script src="../src/js/configuracoes.js"></script>
+    <script src="../../src/js/configuracoes.js"></script>
 </body>
 </html>

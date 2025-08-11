@@ -80,7 +80,7 @@ echo "<h3>4. Teste de Conexão com Banco</h3>";
 try {
     require_once '../config/Database.php';
     $database = new Database();
-    $conn = $database->getConnection();
+    $conn = $database->getConexao();
     
     if ($conn) {
         echo "✅ Conexão com banco estabelecida<br>";
@@ -97,5 +97,5 @@ try {
     echo "❌ Erro de banco: " . $e->getMessage() . "<br>";
 }
 
-echo "<br><a href='configuracoes.php'>← Voltar para Configurações</a>";
+echo "<br><a href='configuracoes/configuracoes.php'>← Voltar para Configurações</a>";
 ?>

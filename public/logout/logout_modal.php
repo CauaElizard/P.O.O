@@ -14,7 +14,7 @@ $user_name = $_SESSION['usuario_nome'] ?? 'Usuário';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar Logout</title>
-    <link rel="stylesheet" href="../src/css/configuracoes.css">
+    <link rel="stylesheet" href="../../src/css/configuracoes.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
 </head>
 <body>
@@ -36,7 +36,7 @@ $user_name = $_SESSION['usuario_nome'] ?? 'Usuário';
                 </div>
                 
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <a href="configuracoes.php" class="btn btn-secondary">
+                    <a href="../configuracoes/configuracoes.php" class="btn btn-secondary">
                         <i data-lucide="arrow-left"></i> Cancelar
                     </a>
                     <a href="logout.php" class="btn btn-danger">

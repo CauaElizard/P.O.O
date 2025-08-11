@@ -6,7 +6,7 @@ class UsuarioLogin {
 
     public function __construct() {
         $database = new Database();
-        $this->conn = $database->getConnection();
+        $this->conn = $database->getConexao();
     }
 
     public function autenticar($email, $senha) {

@@ -39,7 +39,7 @@ switch ($acao) {
                 $mensagem = "Erro: " . $e->getMessage();
             }
         }
-        include 'public/adicionar.php';
+        include 'public/livros/adicionar.php';
         break;
         
     case 'editar':
@@ -52,7 +52,7 @@ switch ($acao) {
         $livro = $livroRepository->buscarPorId($id);
         if (!$livro) {
             $mensagem = "Livro não encontrado.";
-            include 'public/listar.php';
+            include 'public/livros/listar.php';
             break;
         }
         
@@ -76,7 +76,7 @@ switch ($acao) {
                 $mensagem = "Erro: " . $e->getMessage();
             }
         }
-        include 'public/editar.php';
+        include 'public/livros/editar.php';
         break;
         
     case 'excluir':
@@ -96,7 +96,7 @@ switch ($acao) {
         if (isset($_GET['mensagem'])) {
             $mensagem = $_GET['mensagem'];
         }
-        include 'public/listar.php';
+        include 'public/livros/listar.php';
         break;
 }
 ?>

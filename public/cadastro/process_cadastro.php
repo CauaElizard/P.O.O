@@ -1,10 +1,10 @@
 <?php
-require_once "../config/Database.php";
-require_once "../models/UsuarioCad.php";
+require_once "../../config/Database.php";
+require_once "../../models/UsuarioCad.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $database = new Database();
-    $db = $database->getConnection();
+    $db = $database->getConexao();
 
     $usuario = new Usuario($db);
 
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario->senha = $_POST['senha'] ?? '';
 
     if ($usuario->cadastrar()) {
-        header("Location: login.php");
+        header("Location: ../login/login.php");
         exit;
     } else {
         echo "Erro ao cadastrar usuário.";

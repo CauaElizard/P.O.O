@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login.php');
+    header('Location: ../login/login.php');
     exit;
 }
 
-require_once '../models/UserSettings.php';
-require_once '../utils/Sanitizacao.php';
+require_once '../../models/UserSettings.php';
+require_once '../../utils/Sanitizacao.php';
 
 $user_id = $_SESSION['usuario_id'];
 $userSettings = new UserSettings();
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $userSettings->deleteAccount($user_id);
                 if ($result) {
                     session_destroy();
-                    header('Location: login.php?message=Conta excluída com sucesso');
+                    header('Location: ../login/login.php?message=Conta excluída com sucesso');
                     exit;
                 } else {
                     $_SESSION['erro_configuracao'] = 'Erro ao excluir conta';

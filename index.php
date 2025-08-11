@@ -14,11 +14,11 @@
                 <p class="subtitle">Acesse sua conta ou crie uma nova para começar</p>
                 
                 <div class="buttons-container">
-                    <a class="botao login-btn" href="public/login.php">
+                    <a class="botao login-btn" href="public/login/login.php">
                         <span class="btn-icon">🔑</span>
                         Login
                     </a>
-                    <a class="botao cadastro-btn" href="public/cadastro.php">
+                    <a class="botao cadastro-btn" href="public/cadastro/cadastro.php">
                         <span class="btn-icon">👤</span>
                         Cadastro
                     </a>

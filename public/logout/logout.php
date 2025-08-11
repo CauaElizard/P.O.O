@@ -13,6 +13,6 @@ if (ini_get("session.use_cookies")) {
 
 session_destroy();
 
-header('Location: login.php?message=Logout realizado com sucesso');
+header('Location: ../login/login.php?message=Logout realizado com sucesso');
 exit;
 ?>  

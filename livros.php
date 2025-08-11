@@ -1,10 +1,5 @@
 <?php
-/**
- * Arquivo principal da aplicação de cadastro de livros
- * 
- * Este arquivo serve como ponto de entrada da aplicação,
- * gerenciando as rotas e controlando o fluxo da aplicação.
- */
+
 
 require_once 'models/Livro.php';
 require_once 'models/LivroRepository.php';
